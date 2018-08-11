@@ -1,0 +1,41 @@
+@media screen and (max-width: 500px) {
+    .menu-list{
+        display: none;
+    }
+
+    .colorated-container{
+        margin-top: 50px;
+    }
+
+    .mobile-menu{
+        display: inherit;
+    }
+
+    .mobile-menu-list{
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .mobile-menu li{
+        padding: 10px 0px;
+        border-bottom: 1px solid #fff;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .mobile-menu-list li a{
+        color:#fff;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    .mobile-menu-btn{
+        color: #fff !important;
+        background-color: #04304b;
+        border: 1px solid #fff;
+        font-size: 30px;
+        float: right;
+        margin-right: 20px;
+    }
+}

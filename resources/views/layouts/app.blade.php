@@ -28,10 +28,10 @@
                     <div class="clearfix"></div>
                     <ul class="mobile-menu-list" id="mobile-menu-list">
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('password.index') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                        <li><a href="{{route('home')}}">Passwords</a></li>
+                        <li><a href="{{route('password.index')}}">Passwords</a></li>
                         <li><a href="{{route('password.create')}}">New Password</a></li>
                         <li><a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -50,7 +50,7 @@
                         <li><a href="{{ route('login') }}">Login</a></li>
                         <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li><a href="{{route('home')}}">Passwords</a></li>
+                            <li><a href="{{route('password.index')}}">Passwords</a></li>
                             <li><a href="{{route('password.create')}}">New Password</a></li>
                             <li><a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -70,7 +70,7 @@
 <div class="body-wrap">
     @yield('content')
 </div>
-<script src="{{ asset('js/app.css') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
 

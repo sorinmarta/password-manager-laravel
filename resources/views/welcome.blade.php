@@ -12,7 +12,7 @@
         @if(!Auth::check())
             <p>Please <a href="{{route('login')}}">Login</a> or <a href="{{route('register')}}">Register</a> in order to use our password manager </p>
         @else
-            <p>Please see our <a href="{{route('home')}}">Passwords</a> to manage your passwords.</p>
+            <p>Please see our <a href="{{route('password.index')}}">Passwords</a> page to manage your passwords.</p>
         @endif
     </div>
 </div>

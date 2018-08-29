@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Password;
 
 class PasswordController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,10 @@ class PasswordController extends Controller
      */
     public function index()
     {
-        return redirect(route('home'));
+        $user_id = Auth::user()->id;
+        $active_user_passwords = \App\Password::where('user_id',$user_id)->get();
+
+        return view('passwordIndex')->with('rows',$active_user_passwords);
     }
 
     /**
@@ -34,7 +44,17 @@ class PasswordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $passwordField = $request['password'];
+        $usedAtField = $request['used_at'];
+        $userID = Auth::user()->id;
+
+        $password = new Password;
+        $password->password = $passwordField;
+        $password->used_at = $usedAtField;
+        $password->user_id = $userID;
+
+        $password->save();
+        return redirect(route('password.index'));
     }
 
     /**
@@ -45,7 +65,7 @@ class PasswordController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect('/404');
     }
 
     /**
@@ -56,7 +76,9 @@ class PasswordController extends Controller
      */
     public function edit($id)
     {
-        //
+        $active_user_password = \App\Password::where('id',$id)->get();
+
+        return view('editPassword')->with('rows',$active_user_password);
     }
 
     /**
@@ -68,7 +90,15 @@ class PasswordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $password = $request['password'];
+        $usedAt = $request['used_at'];
+
+        $edit_pass = \App\Password::where('id',$id)->first();
+        $edit_pass->password = $password;
+        $edit_pass->used_at = $usedAt;
+
+        $edit_pass->save();
+        return redirect(route('password.index'));
     }
 
     /**
@@ -79,6 +109,9 @@ class PasswordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $actual_pass = \App\Password::where('id',$id)->first();
+
+        $actual_pass->delete();
+        return redirect(route('password.index'));
     }
 }

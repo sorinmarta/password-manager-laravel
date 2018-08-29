@@ -17,6 +17,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/passwords', 'HomeController@index')->name('home');
-
 Route::resource('password','PasswordController');
